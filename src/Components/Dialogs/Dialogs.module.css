@@ -11,3 +11,12 @@ border-right: 1px solid black;
 .messages{
 padding: 10px;
 }
+
+.message {
+    color: white;
+}
+
+.item{
+    color: white;
+    text-decoration: none;
+}

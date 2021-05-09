@@ -1,6 +1,14 @@
 import React from 'react';
+import { v1 } from 'uuid';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
+
+let postsData = [
+  {message:'Я русский' , id:v1(),likesCount:12},
+  {message:'I am not Russian' , id:v1(),likesCount:1},
+]
+
+let postsElements = postsData.map(p => <Post message={p.message} likesCount={p.likesCount} /> )
 
 const MyPosts = () => {
   return (
@@ -15,8 +23,7 @@ const MyPosts = () => {
           <button>Add Post</button>
         </div>
       <div className={s.posts}>
-        <Post message='Я русский' />
-        <Post message='Это мой первый пост' />
+        {postsElements}
       </div>
     </div>
   )

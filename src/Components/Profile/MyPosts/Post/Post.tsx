@@ -3,6 +3,7 @@ import s from './Post.module.css'
 
 type PostPropsType = {
     message:string
+    likesCount:number
 }
 
 const Post =(props:PostPropsType) => {
@@ -11,6 +12,8 @@ const Post =(props:PostPropsType) => {
         <div className={s.item}>
             <img src='https://i.pinimg.com/236x/74/05/5f/74055f83bfbdc20fdc1f9d1fc116fd26.jpg' />
             {props.message}
+            <br></br>
+            {props.likesCount} likes
             </div>
     )
 }
