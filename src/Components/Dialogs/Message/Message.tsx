@@ -1,7 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { v1 } from 'uuid';
-import s from './Dialogs.module.css'
+import s from './../Dialogs.module.css'
 
 
 type MessagePropsType = {
@@ -10,7 +9,7 @@ type MessagePropsType = {
 
 const Message = (props: MessagePropsType) => {
     return (
-        <div className="message">{props.message}</div>
+        <div className={s.message}>{props.message}</div>
     )
 }
 
