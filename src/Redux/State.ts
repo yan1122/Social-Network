@@ -2,9 +2,11 @@ import { MessagesDataType } from './../Components/Dialogs/Dialogs';
 import { v1 } from "uuid"
 import { DialogsDataType } from "../Components/Dialogs/Dialogs"
 import { postsType } from "../Components/Profile/MyPosts/MyPosts"
+import { rerenderEntireTree } from '../Render';
 
-type ProfilePageType ={
+export type ProfilePageType ={
     posts:Array<postsType>
+    newPostText:string
 }
 
 type DialogsPageType ={
@@ -23,7 +25,10 @@ let state:StateType ={
         {message:'Я русский' , id:v1(),likesCount:12},
         {message:'I am not Russian' , id:v1(),likesCount:1},
         {message:'I am learn React' , id:v1(),likesCount:23},
-    ]},
+    ],
+    newPostText: ''
+},
+    
     DialogsPage:{
     dialogsData:[
         { id: v1(), name: 'Sasha' },
@@ -38,6 +43,17 @@ let state:StateType ={
         {message:'How are you?',id:v1()},
         {message:'Lets drink beer today',id:v1()}
       ]}
+}
+
+export let addPost = (postMessage:string) => {
+    let newPost = {message:postMessage,id:v1(),likesCount:0}
+    state.ProfilePage.posts.push(newPost)
+    rerenderEntireTree(state)
+}
+
+export let updateNewPostText = (NewText:string) => {
+    state.ProfilePage.newPostText=NewText
+    rerenderEntireTree(state)
 }
 
 export default state

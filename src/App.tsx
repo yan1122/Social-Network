@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Header from './Components/Header/Header';
 import NavBar from './Components/NavBar/NavBar';
@@ -14,6 +13,8 @@ import { postsType } from './Components/Profile/MyPosts/MyPosts';
 
 type AppPropsType ={
 state:any
+addPost:(postMessage:string) => void
+updateNewPostText:(NewText:string) => void
 }
 
 
@@ -24,7 +25,7 @@ function App(props:AppPropsType) {
       <Header />
       <NavBar />
       <div className='content'>
-      <Route path='/profile' render={() => <Profile posts={props.state.ProfilePage.posts} />} />
+      <Route path='/profile' render={() => <Profile updateNewPostText={props.updateNewPostText} addPost={props.addPost} ProfilePage={props.state.ProfilePage} />} />
       <Route path='/dialogs' render={() => <Dialogs dialogsData={props.state.DialogsPage.dialogsData} messagesData={props.state.DialogsPage.messagesData} />} />
       <Route path='/news' render={() => <News />} />
       <Route path='/music' render={() => <Music />} />
