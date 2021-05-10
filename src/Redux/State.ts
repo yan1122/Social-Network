@@ -2,7 +2,10 @@ import { MessagesDataType } from './../Components/Dialogs/Dialogs';
 import { v1 } from "uuid"
 import { DialogsDataType } from "../Components/Dialogs/Dialogs"
 import { postsType } from "../Components/Profile/MyPosts/MyPosts"
-import { rerenderEntireTree } from '../Render';
+
+let rerenderEntireTree = () => {
+console.log('State changed')
+}
 
 export type ProfilePageType ={
     posts:Array<postsType>
@@ -45,15 +48,19 @@ let state:StateType ={
       ]}
 }
 
-export let addPost = (postMessage:string) => {
+export const addPost = (postMessage:string) => {
     let newPost = {message:postMessage,id:v1(),likesCount:0}
     state.ProfilePage.posts.push(newPost)
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
-export let updateNewPostText = (NewText:string) => {
+export const updateNewPostText = (NewText:string) => {
     state.ProfilePage.newPostText=NewText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
+}
+
+export const subscriber = (observer:()=>void) => {
+    rerenderEntireTree = observer
 }
 
 export default state
