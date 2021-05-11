@@ -3,8 +3,12 @@ import { v1 } from "uuid"
 import { DialogsDataType } from "../Components/Dialogs/Dialogs"
 import { postsType } from "../Components/Profile/MyPosts/MyPosts"
 
-let rerenderEntireTree = () => {
-console.log('State changed')
+export type StoreType = {
+    _state:StateType
+    _callSubscriber:() => void
+    getState:()=>StateType
+    subscriber:(observer:()=>void) => void
+    dispatch:(action:any) => void
 }
 
 export type ProfilePageType ={
@@ -22,7 +26,8 @@ ProfilePage:ProfilePageType
 DialogsPage:DialogsPageType
 }
 
-let state:StateType ={
+let store:StoreType = {
+ _state:{
     ProfilePage:{
     posts:[
         {message:'Я русский' , id:v1(),likesCount:12},
@@ -46,22 +51,42 @@ let state:StateType ={
         {message:'How are you?',id:v1()},
         {message:'Lets drink beer today',id:v1()}
       ]}
+},
+_callSubscriber(){
+    console.log('State changed')
+    },
+
+
+getState () {
+    return(this._state)
+},
+subscriber (observer:()=>void) {
+    this._callSubscriber = observer
+},
+
+dispatch(action:any) {
+if(action.type === 'ADD-POST'){
+    let newPost = {message:this._state.ProfilePage.newPostText,id:v1(),likesCount:0}
+        this._state.ProfilePage.posts.push(newPost)
+        this._callSubscriber()
 }
 
-export const addPost = (postMessage:string) => {
-    let newPost = {message:postMessage,id:v1(),likesCount:0}
-    state.ProfilePage.posts.push(newPost)
-    rerenderEntireTree()
+else if(action.type === 'UPDATE-NEW-POST-TEXT'){
+    this._state.ProfilePage.newPostText=action.NewText
+    this._callSubscriber()
+}
+}
 }
 
-export const updateNewPostText = (NewText:string) => {
-    state.ProfilePage.newPostText=NewText
-    rerenderEntireTree()
-}
+export const addPostActionCreater =() => {
+    return{type:'ADD-POST'}
+  }
+  
+export const UpdateNewPostTextActionCreater = (NewText:string) =>{
+  return{type:'UPDATE-NEW-POST-TEXT',NewText:NewText}
+  }
+  
 
-export const subscriber = (observer:()=>void) => {
-    rerenderEntireTree = observer
-}
 
-export default state
+export default store
 

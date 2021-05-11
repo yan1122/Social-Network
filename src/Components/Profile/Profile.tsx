@@ -6,15 +6,14 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 type ProfilePropsType ={
   ProfilePage:any
-  addPost:(postMessage:string) => void
-  updateNewPostText:(NewText:string) => void
+  dispatch:(action:any) => void
 }
 
 const Profile = (props:ProfilePropsType) => {
     return(
         <div className={s.content}>
         <ProfileInfo />
-        <MyPosts updateNewPostText={props.updateNewPostText} newPostText={props.ProfilePage.newPostText} posts={props.ProfilePage.posts} addPost={props.addPost} />
+        <MyPosts  newPostText={props.ProfilePage.newPostText} posts={props.ProfilePage.posts} dispatch={props.dispatch} />
       </div>
     )
 }
