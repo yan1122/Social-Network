@@ -26,7 +26,7 @@ function App(props:AppPropsType) {
       <NavBar />
       <div className='content'>
       <Route path='/profile' render={() => <Profile dispatch={props.dispatch} ProfilePage={props.state.ProfilePage} />} />
-      <Route path='/dialogs' render={() => <Dialogs dialogsData={props.state.DialogsPage.dialogsData} messagesData={props.state.DialogsPage.messagesData} />} />
+      <Route path='/dialogs' render={() => <Dialogs dispatch={props.dispatch} DialogsPage={props.state.DialogsPage} />} />
       <Route path='/news' render={() => <News />} />
       <Route path='/music' render={() => <Music />} />
       <Route path='/settings' render={() => <Settings />} />
