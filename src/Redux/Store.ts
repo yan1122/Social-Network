@@ -10,7 +10,7 @@ export type StoreType = {
     _state: StateType
     _callSubscriber: () => void
     getState: () => StateType
-    subscriber: (observer: () => void) => void
+    subscribe: (observer: () => void) => void
     dispatch: (action: any) => void
 }
 
@@ -25,10 +25,12 @@ export type DialogsPageType = {
     newMessageText:string
 }
 
+export type SideBarType = {}
+
 export type StateType = {
     ProfilePage: ProfilePageType
     DialogsPage: DialogsPageType
-    SideBar:any
+    SideBar:SideBarType
 }
 
 let store: StoreType = {
@@ -70,7 +72,7 @@ let store: StoreType = {
         return (this._state)
     },
 
-    subscriber(observer: () => void) {
+    subscribe(observer: () => void) {
         this._callSubscriber = observer
     },
 

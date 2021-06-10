@@ -10,11 +10,12 @@ import News from './Components/News/News';
 import Settings from './Components/Settings/Settings';
 import Music from './Components/Music/Music';
 import { postsType } from './Components/Profile/MyPosts/MyPosts';
-import { StateType } from './Redux/State';
+import {StateType, StoreType} from './Redux/Store';
 
 type AppPropsType ={
 state:StateType
 dispatch:(action:any) => void
+  store:any
 }
 
 
