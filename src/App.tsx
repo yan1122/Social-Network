@@ -11,6 +11,7 @@ import Settings from './Components/Settings/Settings';
 import Music from './Components/Music/Music';
 import { postsType } from './Components/Profile/MyPosts/MyPosts';
 import {StateType, StoreType} from './Redux/Store';
+import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 type AppPropsType ={
 state:StateType
@@ -26,8 +27,8 @@ function App(props:AppPropsType) {
       <Header />
       <NavBar />
       <div className='content'>
-      <Route path='/profile' render={() => <Profile dispatch={props.dispatch} ProfilePage={props.state.ProfilePage} />} />
-      <Route path='/dialogs' render={() => <Dialogs dispatch={props.dispatch} DialogsPage={props.state.DialogsPage} />} />
+      <Route path='/profile' render={() => <Profile dispatch={props.dispatch} store={props.store} ProfilePage={props.state.ProfilePage} />} />
+      <Route path='/dialogs' render={() => <DialogsContainer store={props.store} />} />
       <Route path='/news' render={() => <News />} />
       <Route path='/music' render={() => <Music />} />
       <Route path='/settings' render={() => <Settings />} />
