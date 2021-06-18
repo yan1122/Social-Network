@@ -1,8 +1,9 @@
 import React from 'react';
 import { v1 } from 'uuid';
-import { addPostActionCreator, UpdateNewPostTextActionCreator } from '../../../Redux/Store';
+import {addPostActionCreator, StateType, UpdateNewPostTextActionCreator} from '../../../Redux/Store';
 import s from './MyPosts.module.css'
 import MyPosts from "./MyPosts";
+import {connect} from "react-redux";
 
 export type postsType ={
   message:string
@@ -10,31 +11,29 @@ export type postsType ={
   likesCount:number
 }
 
-export type MyPostsContainerPropsType ={
-  store:any
+let mapStateToProps = (state:StateType) => {
+  return{
+    posts:state.ProfilePage.posts,
+    newPostText:state.ProfilePage.newPostText
+  }
 }
 
-const MyPostsContainer = (props:MyPostsContainerPropsType) => {
-  let state = props.store.getState()
-
-  let addPost = () => {
-    props.store.dispatch(addPostActionCreator())
-  }
-
-  let updateNewPostText = (text:string) => {
-    if(text) {
-    props.store.dispatch(UpdateNewPostTextActionCreator(text))
+let mapDispatchToProps = (dispatch:any) => {
+  return {
+    addPost:() => {dispatch(addPostActionCreator())},
+    updateNewPostText: (text:string) => {
+      if(text) {
+        dispatch(UpdateNewPostTextActionCreator(text))
+      }
+      else {
+        dispatch(UpdateNewPostTextActionCreator(''))
+      }
     }
-    else {
-      props.store.dispatch(UpdateNewPostTextActionCreator(''))
     }
   }
 
 
-
-  return (
-      <MyPosts posts={state.ProfilePage.posts} newPostText={state.ProfilePage.newPostText} addPost={addPost} updateNewPostText={updateNewPostText}/>
-  )
-}
+const MyPostsContainer = connect(mapStateToProps,mapDispatchToProps)(MyPosts)
 
 export default MyPostsContainer
+

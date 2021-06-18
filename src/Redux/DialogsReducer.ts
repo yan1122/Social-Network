@@ -24,11 +24,12 @@ export const DialogsReducer = (state:DialogsPageType = InitialState, action: any
             state.newMessageText = action.body
             return state
 
-        case "SEND-MESSAGE" :
+        case "SEND-MESSAGE" :{
             let body = state.newMessageText
+            let message = {message:body,id:v1()}
+            state.messagesData.push(message)
             state.newMessageText = ''
-            state.messagesData.push({message: body, id: v1()})
-            return(state)
+            return(state)}
         default:return state
     }
 }

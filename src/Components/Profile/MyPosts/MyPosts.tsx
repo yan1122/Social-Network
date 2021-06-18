@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import { v1 } from 'uuid';
 import { addPostActionCreator, UpdateNewPostTextActionCreator } from '../../../Redux/Store';
 import s from './MyPosts.module.css'
@@ -28,14 +28,8 @@ const MyPosts = (props:MyPostsPropsType) => {
     props.addPost()
   }
 
-  let updateNewPostText = () => {
-    let NewText = newPostElement.current?.value
-    if(NewText) {
-    props.updateNewPostText(NewText)
-    }
-    else {
-      props.updateNewPostText('')
-    }
+  let updateNewPostText = (e:ChangeEvent<HTMLTextAreaElement>) => {
+    props.updateNewPostText(e.currentTarget.value)
   }
 
 

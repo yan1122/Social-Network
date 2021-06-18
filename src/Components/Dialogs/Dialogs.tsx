@@ -10,7 +10,7 @@ import {DialogsPageType, SendMessageActionCreator, UpdateNewMessageTextActionCre
 type DialogsPropsType = {
     onNewMessageChange: (text: string) => void
     onSendMessageClick: () => void
-    DialogsPage:DialogsPageType
+    DialogsPage: DialogsPageType
 }
 
 export type DialogsDataType = {
@@ -28,6 +28,7 @@ const Dialogs = (props: DialogsPropsType) => {
 
     let dialogsElement = props.DialogsPage.dialogsData.map((d: DialogsDataType) => <DialogItem name={d.name}
                                                                                                id={d.id}/>)
+
     let messagesElement = props.DialogsPage.messagesData.map((m: MessagesDataType) => <Message message={m.message}/>)
     let newMessageText = props.DialogsPage.newMessageText
     let onSendMessageClick = () => {
