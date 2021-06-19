@@ -21,6 +21,7 @@ dispatch:(action:any) => void
 
 
 function App(props:AppPropsType) {
+
   let state = props.store.getState()
   return (
     <BrowserRouter>

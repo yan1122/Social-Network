@@ -18,6 +18,7 @@ export const ProfileReducer = (state:ProfilePageType = InitialState,action: any)
             let newState = {...state}
             newState.posts=[...state.posts]
             newState.posts.push(newPost)
+            newState.newPostText = ''
             return(newState)}
 
         case 'UPDATE-NEW-POST-TEXT' :
@@ -28,6 +29,4 @@ export const ProfileReducer = (state:ProfilePageType = InitialState,action: any)
         default:return state
     }
 
-
-    return state
 }

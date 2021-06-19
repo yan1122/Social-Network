@@ -16,9 +16,11 @@ export type DialogsDataType ={
     name:string
 }
 
-let mapStateToProps = (state:any) => {
+let mapStateToProps = (state:StateType) => {
 return {
-    DialogsPage:state.DialogsPage
+    dialogsData:state.DialogsPage.dialogsData,
+    messagesData:state.DialogsPage.messagesData,
+    newMessageText:state.DialogsPage.newMessageText
 }
 }
 
