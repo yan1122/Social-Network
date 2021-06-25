@@ -5,6 +5,7 @@ import {postsType} from "../Components/Profile/MyPosts/MyPosts"
 import {ProfileReducer} from "./ProfileReducer";
 import {DialogsReducer} from "./DialogsReducer";
 import {SideBarReducer} from "./SideBarReducer";
+import {userType} from "./UsersReducer";
 
 export type StoreType = {
     _state: StateType
@@ -27,13 +28,18 @@ export type DialogsPageType = {
 
 export type SideBarType = {}
 
+export type UsersPageType = {
+    users:Array<userType>
+}
+
 export type StateType = {
     ProfilePage: ProfilePageType
     DialogsPage: DialogsPageType
     SideBar:SideBarType
+    UsersPage:UsersPageType
 }
 
-let store: StoreType = {
+let store: any = {
     _state: {
         ProfilePage: {
             posts: [

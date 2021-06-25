@@ -8,8 +8,8 @@ import { BrowserRouter } from 'react-router-dom';
 import News from './Components/News/News';
 import Settings from './Components/Settings/Settings';
 import Music from './Components/Music/Music';
-import {StateType, StoreType} from './Redux/Store';
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
+import UsersContainer from "./Components/Users/UsersContainer";
 
 type AppPropsType ={
 dispatch:(action:any) => void
@@ -32,6 +32,7 @@ function App(props:AppPropsType) {
       <Route path='/profile' render={() => <Profile dispatch={props.dispatch} store={props.store} ProfilePage={state.ProfilePage} />} />
       <Route path='/dialogs' render={() => <DialogsContainer />} />
       <Route path='/news' render={() => <News />} />
+        <Route path='/users' render={() => <UsersContainer />} />
       <Route path='/music' render={() => <Music />} />
       <Route path='/settings' render={() => <Settings />} />
       </div>
