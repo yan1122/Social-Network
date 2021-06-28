@@ -9,15 +9,18 @@ export type UsersPropsType = {
     users: Array<userType>
     follow: (UserId: string) => void
     unFollow: (UserId: string) => void
-    setUsers: (users:any) => void
+    setUsers: (users: any) => void
 }
 
 const Users = (props: UsersPropsType) => {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-                props.setUsers(response.data.items)
-                debugger
-            })
-    return (<div>
+    let getUsers = () => {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            props.setUsers(response.data.items)
+        })
+    }
+    return (
+        <div>
+            <button onClick={getUsers}>Get Users</button>
             {
                 props.users.map((u: userType) => <div key={u.id}>
         <span>
@@ -25,14 +28,14 @@ const Users = (props: UsersPropsType) => {
                 <img src={UserPhoto} className={s.photo}/>
             </div>
         </span>
-                    <span>
+                        <span>
             <div>
                 {u.isFollowed
-                    ? <button onClick={()=>props.unFollow(u.id)}>Unfollow</button>
+                    ? <button onClick={() => props.unFollow(u.id)}>Unfollow</button>
                     : <button onClick={() => props.follow(u.id)}>Follow</button>}
                 </div>
         </span>
-                    <span>
+                        <span>
                 <span>
                     <div>{u.name}</div>
                     <div>{u.status}</div>
@@ -42,9 +45,9 @@ const Users = (props: UsersPropsType) => {
                     <div>{"u.location.country"}</div>
                 </span>
             </span>
-                </div>
+                    </div>
                 )
-        }
+            }
         </div>
     )
 }
