@@ -30,6 +30,9 @@ export type SideBarType = {}
 
 export type UsersPageType = {
     users:Array<userType>
+    PageSize:number
+    totalUsersCount:number
+    currentPage:number
 }
 
 export type StateType = {
