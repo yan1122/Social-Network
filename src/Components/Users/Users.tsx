@@ -2,21 +2,23 @@ import React from 'react';
 import {userType} from "../../Redux/UsersReducer";
 import UserPhoto from "../../assets/Img/user-png-image-9.png";
 import s from "./Users.module.css";
+import {NavLink} from "react-router-dom";
 
 export type UsersPropsType = {
     users: Array<userType>
     PageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
     follow: (UserId: string) => void
     unFollow: (UserId: string) => void
     setUsers: (users: any) => void
     setCurrentPage: (Page: number) => void
     setTotalUsersCount: (usersCount: number) => void
-    onPageChanged:(p:any) => void
+    onPageChanged: (p: any) => void
 }
 
-const Users = (props:UsersPropsType) => {
+const Users = (props: UsersPropsType) => {
     let PagesCount = Math.ceil(props.totalUsersCount / props.PageSize)
 
     let pages: any = []
@@ -24,13 +26,23 @@ const Users = (props:UsersPropsType) => {
         pages.push(i)
     }
     return (
+
+
         <div>
+
+            <div>
+                {pages.map((p: any) => <span onClick={(e) => {
+                    props.onPageChanged(p)
+                }} className={props.currentPage === p ? s.selectedPage : ''}>{p}</span>)}
+            </div>
             {
                 props.users.map((u: userType) => <div key={u.id}>
                 <span>
                     <div>
+                        <NavLink to={'/profile/' + u.id}>
                         <img src={u.photos.small != null ? u.photos.small : UserPhoto} className={s.photo}/>
-    </div>
+    </NavLink>
+                        </div>
     </span>
                         <span>
     <div>
@@ -53,11 +65,6 @@ const Users = (props:UsersPropsType) => {
                     </div>
                 )
             }
-            <div>
-                {pages.map((p: any) => <span onClick={(e) => {
-                    props.onPageChanged(p)
-                }} className={props.currentPage === p ? s.selectedPage : ''}>{p}</span>)}
-            </div>
         </div>
     )
 }

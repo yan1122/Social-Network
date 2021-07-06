@@ -3,30 +3,39 @@ import {ProfilePageType} from "./Store";
 
 let InitialState = {
     posts: [
-    {message: 'Я русский', id: v1(), likesCount: 12},
-    {message: 'I am not Russian', id: v1(), likesCount: 1},
-    {message: 'I am learn React', id: v1(), likesCount: 23},
-],
-    newPostText: ''
+        {message: 'Я русский', id: v1(), likesCount: 12},
+        {message: 'I am not Russian', id: v1(), likesCount: 1},
+        {message: 'I am learn React', id: v1(), likesCount: 23},
+    ],
+    newPostText: '',
+    profile:null
 }
 
-export const ProfileReducer = (state:ProfilePageType = InitialState,action: any) => {
+export const ProfileReducer = (state: ProfilePageType = InitialState, action: any) => {
     switch (action.type) {
 
-        case 'ADD-POST':{
+        case 'ADD-POST': {
             let newPost = {message: state.newPostText, id: v1(), likesCount: 0}
             let newState = {...state}
-            newState.posts=[...state.posts]
+            newState.posts = [...state.posts]
             newState.posts.push(newPost)
             newState.newPostText = ''
-            return(newState)}
+            return (newState)
+        }
 
         case 'UPDATE-NEW-POST-TEXT' :
             let newState = {...state}
             newState.newPostText = action.NewText
             return newState
 
-        default:return state
+        case 'SET-USER-PROFILE' : {
+            return{...state,profile:action.profile}
+        }
+
+        default:
+            return state
     }
 
 }
+
+export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', profile})

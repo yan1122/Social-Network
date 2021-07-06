@@ -10,6 +10,7 @@ import Settings from './Components/Settings/Settings';
 import Music from './Components/Music/Music';
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
 
 type AppPropsType ={
 dispatch:(action:any) => void
@@ -29,7 +30,7 @@ function App(props:AppPropsType) {
       <Header />
       <NavBar />
       <div className='content'>
-      <Route path='/profile' render={() => <Profile dispatch={props.dispatch} store={props.store} ProfilePage={state.ProfilePage} />} />
+      <Route path='/profile' render={() => <ProfileContainer dispatch={props.dispatch} store={props.store} ProfilePage={state.ProfilePage} />} />
       <Route path='/dialogs' render={() => <DialogsContainer />} />
       <Route path='/news' render={() => <News />} />
         <Route path='/users' render={() => <UsersContainer />} />

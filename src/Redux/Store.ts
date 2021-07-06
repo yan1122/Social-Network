@@ -33,6 +33,7 @@ export type UsersPageType = {
     PageSize:number
     totalUsersCount:number
     currentPage:number
+    isFetching:boolean
 }
 
 export type StateType = {

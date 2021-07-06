@@ -5,16 +5,18 @@ import s from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
+
 type ProfilePropsType = {
     ProfilePage: any
     dispatch: (action: any) => void
     store: any
+    profile:any
 }
 
 const Profile = (props: ProfilePropsType) => {
     return (
         <div className={s.content}>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer/>
         </div>
     )
