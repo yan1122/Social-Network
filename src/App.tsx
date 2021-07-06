@@ -30,7 +30,7 @@ function App(props:AppPropsType) {
       <Header />
       <NavBar />
       <div className='content'>
-      <Route path='/profile' render={() => <ProfileContainer dispatch={props.dispatch} store={props.store} ProfilePage={state.ProfilePage} />} />
+      <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
       <Route path='/dialogs' render={() => <DialogsContainer />} />
       <Route path='/news' render={() => <News />} />
         <Route path='/users' render={() => <UsersContainer />} />

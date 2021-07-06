@@ -7,9 +7,6 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 
 type ProfilePropsType = {
-    ProfilePage: any
-    dispatch: (action: any) => void
-    store: any
     profile:any
 }
 
