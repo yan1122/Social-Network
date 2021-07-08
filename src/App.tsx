@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-import Header from './Components/Header/Header';
 import NavBar from './Components/NavBar/NavBar';
-import Profile from './Components/Profile/Profile';
 import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import News from './Components/News/News';
@@ -11,6 +9,7 @@ import Music from './Components/Music/Music';
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
+import HeaderContainer from "./Components/Header/HeaderContainer";
 
 type AppPropsType ={
 dispatch:(action:any) => void
@@ -27,7 +26,7 @@ function App(props:AppPropsType) {
   return (
     <BrowserRouter>
     <div className="App">
-      <Header />
+      <HeaderContainer />
       <NavBar />
       <div className='content'>
       <Route path='/profile/:userId?' render={() => <ProfileContainer />} />

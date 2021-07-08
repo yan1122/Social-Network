@@ -113,5 +113,4 @@ export const SendMessageActionCreator = () => {
 }
 
 
-export default store
 
