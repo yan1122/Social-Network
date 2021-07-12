@@ -2,7 +2,7 @@ import {v1} from "uuid";
 
 export type userType = {
     id: string
-    isFollowed: boolean
+    followed: boolean
     photoUrl: string
     name: string
     status: string
@@ -15,7 +15,8 @@ let InitialState = {
     PageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching:false
+    isFetching:false,
+    followingInProgress:[ ]
 }
 
 
@@ -27,7 +28,7 @@ const UsersReducer = (state: any = InitialState, action: any) => {
                 ...state,
                 users: state.users.map((u: userType) => {
                     if (u.id === action.UserId) {
-                        return {...u, isFollowed: true}
+                        return {...u, followed: true}
                     }
                     return u
                 })
@@ -40,7 +41,7 @@ const UsersReducer = (state: any = InitialState, action: any) => {
                 ...state,
                 users: state.users.map((u: userType) => {
                     if (u.id === action.UserId) {
-                        return {...u, isFollowed: false}
+                        return {...u, followed: false}
                     }
                     return u
                 })
@@ -65,6 +66,13 @@ const UsersReducer = (state: any = InitialState, action: any) => {
             return{...state,isFetching:action.isFetching}
         }
 
+        case 'TOGGLE-IS-FOLLOWING-PROGRESS' :
+        return {...state,
+            followingInProgress: action.isFetching
+                ? [...state.followingInProgress,action.userId]
+                :[state.followingInProgress.filter((id:number) => id!=action.userId)]
+        }
+
 
         default:
             return state
@@ -77,5 +85,6 @@ export const setUsers = (users: any) => ({type: 'SET-USERS', users})
 export const setCurrentPage = (Page:number) => ({type:'SET-CURRENT-PAGE',Page})
 export const setTotalUsersCount = (usersCount:number) => ({type:'SET-TOTAL-USERS-COUNT',usersCount})
 export const toggleIsFetching = (isFetching:boolean) => ({type:'TOGGLE-IS-FETCHING ',isFetching})
+export const toggleFollowingProgress = (isFetching:boolean,userId:string) => ({type:'TOGGLE-IS-FOLLOWING-PROGRESS',isFetching,userId})
 
 export default UsersReducer

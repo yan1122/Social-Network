@@ -34,6 +34,7 @@ export type UsersPageType = {
     totalUsersCount:number
     currentPage:number
     isFetching:boolean
+    followingInProgress:Array<string>
 }
 
 export type StateType = {
