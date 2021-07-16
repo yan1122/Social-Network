@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+import {HeaderApi} from "../api/Api";
 
 
 let InitialState = {
@@ -22,4 +23,14 @@ const AuthReducer = (state: any = InitialState, action: any) => {
 
 export const setAuthUserData = (userId:any,email:string,login:string) => ({type:'SET-USER-DATA',data: {userId, email, login}})
 
+export const Auth = () => {
+    return (dispatch:any) => {
+        HeaderApi.Auth().then(data => {
+            if(data.resultCode === 0 ){
+                let{id,email,login} = data.data
+                dispatch(setAuthUserData(id, email, login))
+            }
+        })
+    }
+}
 export default AuthReducer

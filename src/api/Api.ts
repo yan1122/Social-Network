@@ -15,7 +15,7 @@ export const UsersApi = {
       return instanse.get(`users?page=${currentPage}&count=${PageSize}`).then(response => response.data)
    },
    FollowUser(userId:any){
-     return instanse.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,{}).
+     return instanse.post(`follow/${userId}`,{}).
      then(response => {
          return(response.data)
      })
@@ -23,6 +23,12 @@ export const UsersApi = {
    UnFollowUser(userId:any) {
      return instanse.delete(`follow/${userId}`).then(response => response.data)
    },
+}
+export const HeaderApi = {
+    Auth() {
+       return instanse.get(`auth/me`)
+            .then(response => response.data)
+    }
 }
 
 
