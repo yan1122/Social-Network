@@ -6,7 +6,7 @@ import Header from "./Header";
 import axios from "axios";
 import {connect} from "react-redux";
 import {Auth, setAuthUserData} from "../../Redux/AuthReducer";
-import {HeaderApi} from "../../api/Api";
+
 
 export type HeaderContainerPropsType = {
     isAuth: boolean
@@ -18,7 +18,6 @@ export type HeaderContainerPropsType = {
 class HeaderContainer extends React.Component<HeaderContainerPropsType, StateType> {
 
     componentDidMount() {
-        // this.props.toggleIsFetching(true)
         this.props.Auth()
     }
 

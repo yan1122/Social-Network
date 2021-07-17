@@ -1,5 +1,6 @@
 import {v1} from "uuid";
 import {ProfilePageType} from "./Store";
+import {ProfileApi} from "../api/Api";
 
 let InitialState = {
     posts: [
@@ -39,3 +40,11 @@ export const ProfileReducer = (state: ProfilePageType = InitialState, action: an
 }
 
 export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', profile})
+export const getUserProfile = (userId:string) => {
+    return (dispatch:any) => {
+        ProfileApi.getProfile(userId)
+            .then(response => {
+                dispatch(setUserProfile(response.data))
+            })
+    }
+}

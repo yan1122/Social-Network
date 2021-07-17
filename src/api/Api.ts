@@ -1,32 +1,37 @@
 import axios from "axios";
 
-const baseUrl =`https://social-network.samuraijs.com/api/1.0/`
+const baseUrl = `https://social-network.samuraijs.com/api/1.0/`
 
 const instanse = axios.create({
-   withCredentials:true,
-   baseURL:`https://social-network.samuraijs.com/api/1.0/`,
-   headers:{
-      "API-KEY":"1a246526-c15d-4a1f-9651-7437e332dff7"
-   }
+    withCredentials: true,
+    baseURL: `https://social-network.samuraijs.com/api/1.0/`,
+    headers: {
+        "API-KEY": "1a246526-c15d-4a1f-9651-7437e332dff7"
+    }
 })
 
 export const UsersApi = {
-   getUsers(currentPage: number = 1, PageSize: number = 10) {
-      return instanse.get(`users?page=${currentPage}&count=${PageSize}`).then(response => response.data)
-   },
-   FollowUser(userId:any){
-     return instanse.post(`follow/${userId}`,{}).
-     then(response => {
-         return(response.data)
-     })
-   },
-   UnFollowUser(userId:any) {
-     return instanse.delete(`follow/${userId}`).then(response => response.data)
-   },
+    getUsers(currentPage: number = 1, PageSize: number = 10) {
+        return instanse.get(`users?page=${currentPage}&count=${PageSize}`).then(response => response.data)
+    },
+    FollowUser(userId: any) {
+        return instanse.post(`follow/${userId}`, {}).then(response => {
+            return (response.data)
+        })
+    },
+    UnFollowUser(userId: any) {
+        return instanse.delete(`follow/${userId}`).then(response => response.data)
+    },
 }
-export const HeaderApi = {
-    Auth() {
-       return instanse.get(`auth/me`)
+export const ProfileApi = {
+    getProfile(userId: string) {
+        return instanse.get(`profile/` + userId)
+    }
+}
+
+export const AuthApi = {
+    me() {
+        return instanse.get(`auth/me`)
             .then(response => response.data)
     }
 }

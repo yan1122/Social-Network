@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {HeaderApi} from "../api/Api";
+import {AuthApi} from "../api/Api";
 
 
 let InitialState = {
@@ -25,7 +25,7 @@ export const setAuthUserData = (userId:any,email:string,login:string) => ({type:
 
 export const Auth = () => {
     return (dispatch:any) => {
-        HeaderApi.Auth().then(data => {
+        AuthApi.me().then(data => {
             if(data.resultCode === 0 ){
                 let{id,email,login} = data.data
                 dispatch(setAuthUserData(id, email, login))
