@@ -33,4 +33,5 @@ export const Auth = () => {
         })
     }
 }
+
 export default AuthReducer

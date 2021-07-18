@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Redirect} from 'react-router-dom';
 import {v1} from 'uuid';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogsItem/DialogsItem';
@@ -13,6 +13,7 @@ type DialogsPropsType = {
     dialogsData: Array<DialogsDataType>
     messagesData: Array<MessagesDataType>
     newMessageText:string
+    isAuth:boolean
 }
 
 export type DialogsDataType = {
@@ -42,7 +43,9 @@ const Dialogs = (props: DialogsPropsType) => {
         props.onNewMessageChange(e.currentTarget.value)
     }
 
-    return (
+    if(!props.isAuth) return <Redirect to='/login' />
+
+    return(
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 {dialogsElement}

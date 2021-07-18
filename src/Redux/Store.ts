@@ -42,6 +42,7 @@ export type StateType = {
     DialogsPage: DialogsPageType
     SideBar:SideBarType
     UsersPage:UsersPageType
+    Auth:any
 }
 
 let store: any = {

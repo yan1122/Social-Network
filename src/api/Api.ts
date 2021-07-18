@@ -6,7 +6,7 @@ const instanse = axios.create({
     withCredentials: true,
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
     headers: {
-        "API-KEY": "1a246526-c15d-4a1f-9651-7437e332dff7"
+        "API-KEY": "ba5cecd6-1162-4b9f-80a1-8473e46fd1a8"
     }
 })
 
@@ -23,6 +23,7 @@ export const UsersApi = {
         return instanse.delete(`follow/${userId}`).then(response => response.data)
     },
 }
+
 export const ProfileApi = {
     getProfile(userId: string) {
         return instanse.get(`profile/` + userId)
