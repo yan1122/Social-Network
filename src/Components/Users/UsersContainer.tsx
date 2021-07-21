@@ -3,17 +3,19 @@ import {connect} from "react-redux";
 import {StateType} from "../../Redux/Store";
 import {
     follow,
-    followSuccess, getUsers,
+    followSuccess,
+    getUsers,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers, toggleFollowingProgress, toggleIsFetching, unFollow,
+    setUsers,
+    toggleFollowingProgress,
+    toggleIsFetching,
+    unFollow,
     unFollowSuccess,
     userType
 } from "../../Redux/UsersReducer";
-import axios from "axios";
 import Users from "./Users";
 import {CircularProgress} from "@material-ui/core";
-import {UsersApi} from "../../api/Api";
 
 export type UsersAPIPropsType = {
     users: Array<userType>

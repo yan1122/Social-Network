@@ -1,12 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import s from './Login.module.css'
 
-export type LoginPropsType = {
+// export type LoginPropsType = {
+//
+// }
 
-}
-
-const Login = (props:LoginPropsType) => {
+const Login = () => {
     return(
         <h1>Login</h1>
     )

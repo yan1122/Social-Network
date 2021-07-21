@@ -1,4 +1,3 @@
-import {v1} from "uuid";
 import {UsersApi} from "../api/Api";
 
 export type userType = {
@@ -25,7 +24,7 @@ const UsersReducer = (state: any = InitialState, action: any) => {
     switch (action.type) {
 
         case 'FOLLOW' : {
-            let StateCopy = {
+            return {
                 ...state,
                 users: state.users.map((u: userType) => {
                     if (u.id === action.UserId) {
@@ -34,11 +33,10 @@ const UsersReducer = (state: any = InitialState, action: any) => {
                     return u
                 })
             }
-            return StateCopy
         }
 
         case 'UNFOLLOW' :
-            let StateCopy = {
+            return {
                 ...state,
                 users: state.users.map((u: userType) => {
                     if (u.id === action.UserId) {
@@ -47,7 +45,6 @@ const UsersReducer = (state: any = InitialState, action: any) => {
                     return u
                 })
             }
-            return StateCopy
 
         case 'SET-USERS':
             return {
@@ -72,7 +69,7 @@ const UsersReducer = (state: any = InitialState, action: any) => {
                 ...state,
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
-                    : [state.followingInProgress.filter((id: number) => id != action.userId)]
+                    : [state.followingInProgress.filter((id: number) => id !== action.userId)]
             }
 
 

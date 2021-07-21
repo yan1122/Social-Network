@@ -1,5 +1,4 @@
 import React from 'react';
-import { v1 } from 'uuid';
 import s from './../Dialogs.module.css'
 
 

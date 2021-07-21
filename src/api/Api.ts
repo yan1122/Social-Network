@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const baseUrl = `https://social-network.samuraijs.com/api/1.0/`
-
 const instanse = axios.create({
     withCredentials: true,
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,

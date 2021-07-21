@@ -1,4 +1,3 @@
-import {v1} from "uuid";
 import {AuthApi} from "../api/Api";
 
 

@@ -1,10 +1,8 @@
 import React from 'react';
-import {toggleFollowingProgress, userType} from "../../Redux/UsersReducer";
+import {userType} from "../../Redux/UsersReducer";
 import UserPhoto from "../../assets/Img/user-png-image-9.png";
 import s from "./Users.module.css";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {UsersApi} from "../../api/Api";
 
 export type UsersPropsType = {
     users: Array<userType>
@@ -38,7 +36,7 @@ const Users = (props: UsersPropsType) => {
         <div>
 
             <div>
-                {pages.map((p: any) => <span onClick={(e) => {
+                {pages.map((p: any) => <span onClick={() => {
                     props.onPageChanged(p)
                 }} className={props.currentPage === p ? s.selectedPage : ''}>{p}</span>)}
             </div>
@@ -47,7 +45,7 @@ const Users = (props: UsersPropsType) => {
                 <span>
                     <div>
                         <NavLink to={'/profile/' + u.id}>
-                        <img src={u.photos.small != null ? u.photos.small : UserPhoto} className={s.photo}/>
+                        <img src={u.photos.small != null ? u.photos.small : UserPhoto} className={s.photo} alt={'img'}/>
     </NavLink>
                         </div>
     </span>

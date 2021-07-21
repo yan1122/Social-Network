@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {DialogsPageType, StateType} from "./Store";
+import {DialogsPageType} from "./Store";
 import {DialogsDataArrayType, MessagesDataArrayType} from "../Components/Dialogs/Dialogs";
 
 export type InitialStateType = {

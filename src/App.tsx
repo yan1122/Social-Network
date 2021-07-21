@@ -19,8 +19,7 @@ type AppPropsType = {
 
 
 function App(props: AppPropsType) {
-
-    let state = props.store.getState()
+    props.store.getState();
     return (
         <BrowserRouter>
             <div className="App">

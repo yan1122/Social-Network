@@ -10,7 +10,7 @@ export type HeaderPropsType = {
 const Header = (props:HeaderPropsType) => {
     return (
         <div className={s.header}>
-            <img src='https://cdn.logo.com/hotlink-ok/logo-social-sq.png'/>
+            <img src='https://cdn.logo.com/hotlink-ok/logo-social-sq.png' alt='Ava'/>
 
             <div className={s.loginBlock}>
 

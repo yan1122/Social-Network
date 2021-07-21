@@ -1,7 +1,5 @@
-import React from 'react';
-import { v1 } from 'uuid';
+
 import {addPostActionCreator, StateType, UpdateNewPostTextActionCreator} from '../../../Redux/Store';
-import s from './MyPosts.module.css'
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
