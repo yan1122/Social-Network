@@ -1,14 +1,12 @@
-import React, {ChangeEvent} from 'react';
-import DialogItem from './DialogsItem/DialogsItem';
-import Message from './Message/Message';
+import React from 'react';
 import {
-    DialogsPageType,
     SendMessageActionCreator,
     StateType,
     UpdateNewMessageTextActionCreator
 } from "../../Redux/Store";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 export type DialogsDataType ={
@@ -33,6 +31,8 @@ let mapDispatchToProps = (dispatch:any) => {
 
 }
 
-const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
+
+const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(AuthRedirectComponent)
 
 export default DialogsContainer

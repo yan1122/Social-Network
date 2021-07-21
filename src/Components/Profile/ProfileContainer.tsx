@@ -1,12 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
-import {getUserProfile, setUserProfile} from "../../Redux/ProfileReducer";
+import {getUserProfile} from "../../Redux/ProfileReducer";
 import {StateType} from "../../Redux/Store";
-import {withRouter, RouteComponentProps} from 'react-router';
-import {ProfileApi} from "../../api/Api";
-import {Redirect} from "react-router-dom";
+import {RouteComponentProps, withRouter} from 'react-router';
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type PathParamType = {
     userId: string
@@ -25,23 +23,27 @@ type OwnPropsType = mapStatePropsType & mapDispatchPropsType
 
 type PropsType = RouteComponentProps<PathParamType> & OwnPropsType
 
+class ProfileApiContainer extends React.Component<PropsType, StateType> {
 
-let ProfileAPIContainer = (props: PropsType) => {
-    useEffect(() => {
-        let userId = props.match.params.userId
-        props.getUserProfile(userId)
-    }, [])
-    if (!props.isAuth) return <Redirect to='/login' />
-    return (
-        <Profile profile={props.profile}/>
-    )
+    componentDidMount() {
+        let userId = this.props.match.params.userId
+        this.props.getUserProfile(userId)
+    }
+
+    render() {
+        return (
+            <Profile profile={this.props.profile}/>
+        )
+    }
 }
+
+let AuthRedirectComponent = withAuthRedirect(ProfileApiContainer)
 
 const mapStateToProps = (state: any): mapStatePropsType => ({
     profile: state.ProfilePage.profile,
     isAuth: state.Auth.isAuth
 })
 
-let withUrlDataContainerComponent = withRouter(ProfileAPIContainer)
-const ProfileContainer = connect(mapStateToProps, {getUserProfile})(withUrlDataContainerComponent)
-export default ProfileContainer
+let withUrlDataContainerComponent = withRouter(AuthRedirectComponent)
+
+export default connect(mapStateToProps, {getUserProfile})(withUrlDataContainerComponent)

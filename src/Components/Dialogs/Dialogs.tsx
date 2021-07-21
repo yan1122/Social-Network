@@ -1,10 +1,7 @@
 import React, {ChangeEvent} from 'react';
-import {NavLink, Redirect} from 'react-router-dom';
-import {v1} from 'uuid';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
-import {DialogsPageType, SendMessageActionCreator, UpdateNewMessageTextActionCreator} from "../../Redux/Store";
 
 
 type DialogsPropsType = {
@@ -42,8 +39,6 @@ const Dialogs = (props: DialogsPropsType) => {
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.onNewMessageChange(e.currentTarget.value)
     }
-
-    if(!props.isAuth) return <Redirect to='/login' />
 
     return(
         <div className={s.dialogs}>
