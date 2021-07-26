@@ -2,6 +2,8 @@ import React from 'react'
 import {StateType} from "../Redux/Store";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
+
+
 export const withAuthRedirect = (Component: any) => {
 
     const mapStateToPropsForRedirect = (state: any): any => ({

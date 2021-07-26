@@ -25,6 +25,12 @@ export const UsersApi = {
 export const ProfileApi = {
     getProfile(userId: string) {
         return instanse.get(`profile/` + userId)
+    },
+    getStatus(userId:string) {
+        return instanse.get(`profile/status/${userId}`)
+    },
+    updateStatus(status:string){
+        return instanse.put(`profile/status` ,{status})
     }
 }
 

@@ -9,7 +9,8 @@ let InitialState = {
         {message: 'I am learn React', id: v1(), likesCount: 23},
     ],
     newPostText: '',
-    profile:null
+    profile: null,
+    status: ''
 }
 
 export const ProfileReducer = (state: ProfilePageType = InitialState, action: any) => {
@@ -30,7 +31,11 @@ export const ProfileReducer = (state: ProfilePageType = InitialState, action: an
             return newState
 
         case 'SET-USER-PROFILE' : {
-            return{...state,profile:action.profile}
+            return {...state, profile: action.profile}
+        }
+
+        case 'SET-STATUS' : {
+            return {...state, status: action.status}
         }
 
         default:
@@ -40,11 +45,28 @@ export const ProfileReducer = (state: ProfilePageType = InitialState, action: an
 }
 
 export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', profile})
-export const getUserProfile = (userId:string) => {
-    return (dispatch:any) => {
+export const getUserProfile = (userId: string) => {
+    return (dispatch: any) => {
         ProfileApi.getProfile(userId)
             .then(response => {
                 dispatch(setUserProfile(response.data))
             })
     }
+}
+export const setStatus = (status: string) => ({type: 'SET-STATUS', status})
+
+export const getStatus = (userId: string) => {
+    return (dispatch: any) => {
+        ProfileApi.getStatus(userId)
+            .then(res => dispatch(setStatus(res.data)))
+
+    }
+}
+export const updateStatus = (status: string) => (dispatch: any) => {
+    ProfileApi.updateStatus(status)
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setStatus(status))
+            }
+        })
 }

@@ -16,6 +16,7 @@ import {
 } from "../../Redux/UsersReducer";
 import Users from "./Users";
 import {CircularProgress} from "@material-ui/core";
+import {compose} from "redux";
 
 export type UsersAPIPropsType = {
     users: Array<userType>
@@ -83,15 +84,30 @@ const mapStateToProps = (state: StateType) => {
 }
 
 
-export default connect(mapStateToProps, {
-    followSuccess,
-    unFollowSuccess,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    toggleIsFetching,
-    toggleFollowingProgress,
-    getUsers,
-    unFollow,
-    follow
-})(UsersContainerComponent)
+// export default connect(mapStateToProps, {
+//     followSuccess,
+//     unFollowSuccess,
+//     setUsers,
+//     setCurrentPage,
+//     setTotalUsersCount,
+//     toggleIsFetching,
+//     toggleFollowingProgress,
+//     getUsers,
+//     unFollow,
+//     follow
+// })(UsersContainerComponent)
+
+export default compose(
+    connect(mapStateToProps, {
+        followSuccess,
+        unFollowSuccess,
+        setUsers,
+        setCurrentPage,
+        setTotalUsersCount,
+        toggleIsFetching,
+        toggleFollowingProgress,
+        getUsers,
+        unFollow,
+        follow
+    }),
+)(UsersContainerComponent)

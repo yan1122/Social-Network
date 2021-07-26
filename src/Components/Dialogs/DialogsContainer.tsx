@@ -1,4 +1,4 @@
-
+import React from 'react'
 import {
     SendMessageActionCreator,
     StateType,
@@ -7,6 +7,7 @@ import {
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 export type DialogsDataType ={
@@ -31,8 +32,9 @@ let mapDispatchToProps = (dispatch:any) => {
 
 }
 
-let AuthRedirectComponent = withAuthRedirect(Dialogs)
 
-const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(AuthRedirectComponent)
 
-export default DialogsContainer
+export default compose<React.ComponentType>(
+    connect(mapStateToProps,mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs)
