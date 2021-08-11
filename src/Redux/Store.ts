@@ -19,7 +19,6 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogsData: Array<DialogsDataType>
     messagesData: Array<MessagesDataType>
-    newMessageText:string
 }
 
 export type SideBarType = {}
@@ -40,20 +39,9 @@ export type StateType = {
     UsersPage:UsersPageType
     Auth:any
 }
-v1();
-v1();
-v1();
-v1();
-v1();
-v1();
-v1();
-v1();
-v1();
-v1();
-v1();
-v1();
-export const addPostActionCreator = () => {
-    return {type: 'ADD-POST'}
+
+export const addPostActionCreator = (value:string) => {
+    return {type: 'ADD-POST',value}
 }
 
 export const UpdateNewPostTextActionCreator = (NewText: string) => {
@@ -64,8 +52,8 @@ export const UpdateNewMessageTextActionCreator = (body:string) => {
     return {type: 'UPDATE-NEW-MESSAGE-TEXT', body:body}
 }
 
-export const SendMessageActionCreator = () => {
-    return {type: 'SEND-MESSAGE'}
+export const SendMessageActionCreator = (value:string) => {
+    return {type: 'SEND-MESSAGE',value}
 }
 
 

@@ -17,11 +17,10 @@ export const ProfileReducer = (state: ProfilePageType = InitialState, action: an
     switch (action.type) {
 
         case 'ADD-POST': {
-            let newPost = {message: state.newPostText, id: v1(), likesCount: 0}
+            let newPost = {message: action.value, id: v1(), likesCount: 0}
             let newState = {...state}
             newState.posts = [...state.posts]
             newState.posts.push(newPost)
-            newState.newPostText = ''
             return (newState)
         }
 

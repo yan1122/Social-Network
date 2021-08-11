@@ -18,7 +18,7 @@ let mapStateToProps = (state:StateType) => {
 
 let mapDispatchToProps = (dispatch:any) => {
   return {
-    addPost:() => {dispatch(addPostActionCreator())},
+    addPost:(value:string) => {dispatch(addPostActionCreator(value))},
     updateNewPostText: (text:string) => {
       if(text) {
         dispatch(UpdateNewPostTextActionCreator(text))

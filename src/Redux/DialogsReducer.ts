@@ -5,7 +5,6 @@ import {DialogsDataArrayType, MessagesDataArrayType} from "../Components/Dialogs
 export type InitialStateType = {
     dialogsData:DialogsDataArrayType
     messagesData:MessagesDataArrayType
-    newMessageText:string
 }
 
 let InitialState:InitialStateType = {
@@ -22,23 +21,15 @@ let InitialState:InitialStateType = {
         {message: 'How are you?', id: v1()},
         {message: 'Lets drink beer today', id: v1()},
     ],
-    newMessageText:''
 }
 
 export const DialogsReducer = (state:DialogsPageType = InitialState, action: any) => {
 
 
-
     switch(action.type) {
-        case "UPDATE-NEW-MESSAGE-TEXT" :{
-            state.newMessageText = action.body
-            return {...state}}
-
         case "SEND-MESSAGE" :
-            let body = state.newMessageText
-            state.messagesData.push({message:body,id:v1()})
-            state.newMessageText = ''
-            return {...state}
+            let body = action.value
+            return {...state,messagesData:[...state.messagesData,{message:body,id:v1()}]}
         default:return state
     }
 }

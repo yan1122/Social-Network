@@ -19,7 +19,6 @@ let mapStateToProps = (state:StateType) => {
 return {
     dialogsData:state.DialogsPage.dialogsData,
     messagesData:state.DialogsPage.messagesData,
-    newMessageText:state.DialogsPage.newMessageText,
     isAuth:state.Auth.isAuth
 }
 }
@@ -27,7 +26,7 @@ return {
 let mapDispatchToProps = (dispatch:any) => {
     return {
         onNewMessageChange:(text:string) => {dispatch(UpdateNewMessageTextActionCreator(text))},
-        onSendMessageClick:() => {dispatch(SendMessageActionCreator())}
+        onSendMessageClick:(value:string) => {dispatch(SendMessageActionCreator(value))}
     }
 
 }
