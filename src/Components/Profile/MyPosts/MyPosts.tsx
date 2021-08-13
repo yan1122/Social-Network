@@ -52,7 +52,7 @@ const MyPostsForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <Field component={TextArea}
                        name={'newPostBody'}
                        placeholder={'Enter your post text'}
-                validate={[requiredField]}/>
+                validate={[requiredField,maxLength10]}/>
             </div>
             <div className={s.addButton}>
                 <button>Add Post</button>
