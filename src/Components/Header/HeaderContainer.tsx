@@ -8,7 +8,7 @@ import {Auth, setAuthUserData} from "../../Redux/AuthReducer";
 export type HeaderContainerPropsType = {
     isAuth: boolean
     login: string
-    setAuthUserData: (userId: any, email: string, login: string) => void
+    setAuthUserData: (userId: any, email: string, login: string,isAuth:boolean) => void
     Auth:() => void
 }
 

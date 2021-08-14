@@ -38,6 +38,12 @@ export const AuthApi = {
     me() {
         return instanse.get(`auth/me`)
             .then(response => response.data)
+    },
+    login(email:string,password:string,rememberMe:boolean = false){
+        return instanse.post(`/auth/login`,{email,password,rememberMe})
+    },
+    logout(){
+        return instanse.delete(`/auth/login`)
     }
 }
 
