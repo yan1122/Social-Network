@@ -14,6 +14,7 @@ let InitialState = {
 const AuthReducer = (state: any = InitialState, action: any) => {
     switch (action.type) {
         case 'SET-USER-DATA':
+            debugger
             return {...state, ...action.data}
 
         default:
@@ -21,21 +22,20 @@ const AuthReducer = (state: any = InitialState, action: any) => {
     }
 }
 
-export const setAuthUserData = (userId: any, email: string, login: string, isAuth: boolean) => ({
+export const setAuthUserData = (userId: any, email: string, login: string, isAuth: boolean) =>  ({
     type: 'SET-USER-DATA',
     data: {userId, email, login, isAuth}
 })
 
-export const Auth = () => {
-    return (dispatch: any) => {
-        AuthApi.me().then(data => {
+export const Auth = () => (dispatch: any) => {
+
+         return AuthApi.me().then(data => {
             if (data.resultCode === 0) {
                 let {id, email, login} = data.data
                 dispatch(setAuthUserData(id, email, login, true))
             }
         })
     }
-}
 
 export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
     AuthApi.login(email, password, rememberMe).then(response => {
