@@ -3,8 +3,7 @@ import {connect} from "react-redux";
 import {StateType} from "../../Redux/Store";
 import {
     follow,
-    followSuccess,
-    getUsers,
+    followSuccess, getUsers,
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
@@ -17,6 +16,15 @@ import {
 import Users from "./Users";
 import {CircularProgress} from "@material-ui/core";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    GetUsers
+} from "../../Redux/users-selectors";
+import {AppRootStateType} from "../../Redux/ReduxStore";
 
 export type UsersAPIPropsType = {
     users: Array<userType>
@@ -72,30 +80,29 @@ class UsersContainerComponent extends React.Component<UsersAPIPropsType, StateTy
     }
 }
 
-const mapStateToProps = (state: StateType) => {
+// const mapStateToProps = (state: StateType) => {
+//     return {
+//         users: state.UsersPage.users,
+//         PageSize: state.UsersPage.PageSize,
+//         totalUsersCount: state.UsersPage.totalUsersCount,
+//         currentPage: state.UsersPage.currentPage,
+//         isFetching: state.UsersPage.isFetching,
+//         followingInProgress: state.UsersPage.followingInProgress
+//     }
+// }
+
+const mapStateToProps = (state: AppRootStateType) => {
     return {
-        users: state.UsersPage.users,
-        PageSize: state.UsersPage.PageSize,
-        totalUsersCount: state.UsersPage.totalUsersCount,
-        currentPage: state.UsersPage.currentPage,
-        isFetching: state.UsersPage.isFetching,
-        followingInProgress: state.UsersPage.followingInProgress
+        users: GetUsers(state),
+        PageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 
 
-// export default connect(mapStateToProps, {
-//     followSuccess,
-//     unFollowSuccess,
-//     setUsers,
-//     setCurrentPage,
-//     setTotalUsersCount,
-//     toggleIsFetching,
-//     toggleFollowingProgress,
-//     getUsers,
-//     unFollow,
-//     follow
-// })(UsersContainerComponent)
 
 export default compose(
     connect(mapStateToProps, {
